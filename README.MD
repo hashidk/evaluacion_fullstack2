@@ -167,9 +167,11 @@ CREATE DATABASE eval_database;
 mysql -u root -p eval_database < database/script.sql
 ```
 
-O desde phpMyAdmin:
+Desde phpMyAdmin:
 
 * Importar archivo `script.sql`
+
+O simplemente ejecute los comandos directamente en phpmyadmin (MySQL)
 
 ---
 
