@@ -1,0 +1,439 @@
+<div class="fs-4 text-center border" style="background-color: #daecf8;">
+    <h3 class="text-info p-3 fs-4">CREAR EMPLEADO NUEVO</h3>
+</div>
+
+<div class="d-flex align-items-center flex-column">
+    <div class="w-75">
+
+        <div>
+            @if(this.error()!==''){
+                <div class="bg-danger rounded-bottom">
+                    <p class="p-2 text-white"><span class="fw-bold">Error:</span> No se pudieron guardar los cambios, {{this.error()}}</p>
+                </div>
+            }
+            @if(this.success()){
+                <div class="bg-success rounded-bottom">
+                    <p class="p-2 text-white fw-bold">Datos guardados con éxito</p>
+                </div>
+            }
+            
+            <div class="mt-3 d-flex gap-2">
+                <button class="datos rounded-top {{step==1 ? 'seleccionado' : ''}}" (click)="cambiarPaso($event,1)">
+                    <p>Datos Personales</p>
+                </button>
+                <button class="datos rounded-top {{step==2 ? 'seleccionado' : ''}}" (click)="cambiarPaso($event,2)"
+                [style]="form1.invalid ? 'opacity: 0.5' : ''"
+                [disabled]="form1.invalid">
+                    <p>Datos Laborales</p>
+                </button>
+            </div>
+            <div class="w-100 border-bottom" style="position: relative; bottom: 1px;"></div>
+            @if (step===1){
+            <form class="datos-personales" [formGroup]="form1">
+                <div class="d-flex gap-3 flex-column flex-md-row">
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="nombres" class="form-label">Nombres <span class="text-danger">*</span></label>
+                        <input required type="text" class="form-control" id="nombres" aria-describedby="emailHelp"
+                        formControlName="nombres" [value]="this.persona().nombres">
+                        @if (form1.get('nombres')?.touched && form1.get('nombres')?.invalid) {
+                            @if (form1.get('nombres')?.errors?.['required']) {
+                                <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                            }
+                            @if (form1.get('nombres')?.errors?.['minlength']) {
+                                <div id="" class="form-text" style="color: red;">Debe contener mínimo 3 caracteres</div>
+                            }
+                        }
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="apellidos" class="form-label">Apellidos <span class="text-danger">*</span></label>
+                        <input required type="text" class="form-control" id="apellidos"
+                        formControlName="apellidos" [value]="this.persona().apellidos">
+                        @if (form1.get('apellidos')?.touched && form1.get('apellidos')?.invalid) {
+                            @if (form1.get('apellidos')?.errors?.['required']) {
+                                <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                            }
+                            @if (form1.get('apellidos')?.errors?.['minlength']) {
+                                <div id="" class="form-text" style="color: red;">Debe contener mínimo 3 caracteres</div>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="d-flex gap-3 flex-column flex-md-row">
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="cedula" class="form-label">Cédula: (Válida) <span
+                                class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="cedula"
+                        [value]="this.persona().ruc_cedula" disabled>
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="provincia" class="form-label">Provincia <span class="text-danger">*</span></label>
+                        <select required type="text" class="form-control" id="provincia"
+                        formControlName="provincia">
+                            <option [selected]="this.persona().provincia==='Azuay'" value="Azuay">Azuay</option>
+                            <option [selected]="this.persona().provincia==='Bolívar'" value="Bolívar">Bolívar</option>
+                            <option [selected]="this.persona().provincia==='Cañar'" value="Cañar">Cañar</option>
+                            <option [selected]="this.persona().provincia==='Carchi'" value="Carchi">Carchi</option>
+                            <option [selected]="this.persona().provincia==='Cotopaxi'" value="Cotopaxi">Cotopaxi</option>
+                            <option [selected]="this.persona().provincia==='Chimborazo'" value="Chimborazo">Chimborazo</option>
+                            <option [selected]="this.persona().provincia==='El Oro'" value="El Oro">El Oro</option>
+                            <option [selected]="this.persona().provincia==='Esmeraldas'" value="Esmeraldas">Esmeraldas</option>
+                            <option [selected]="this.persona().provincia==='Galápagos'" value="Galápagos">Galápagos</option>
+                            <option [selected]="this.persona().provincia==='Guayas'" value="Guayas">Guayas</option>
+                            <option [selected]="this.persona().provincia==='Imbabura'" value="Imbabura">Imbabura</option>
+                            <option [selected]="this.persona().provincia==='Loja'" value="Loja">Loja</option>
+                            <option [selected]="this.persona().provincia==='Los Ríos'" value="Los Ríos">Los Ríos</option>
+                            <option [selected]="this.persona().provincia==='Manabí'" value="Manabí">Manabí</option>
+                            <option [selected]="this.persona().provincia==='Morona Santiago'" value="Morona Santiago">Morona Santiago</option>
+                            <option [selected]="this.persona().provincia==='Napo'" value="Napo">Napo</option>
+                            <option [selected]="this.persona().provincia==='Orellana'" value="Orellana">Orellana</option>
+                            <option [selected]="this.persona().provincia==='Pastaza'" value="Pastaza">Pastaza</option>
+                            <option [selected]="this.persona().provincia==='Pichincha'" value="Pichincha">Pichincha</option>
+                            <option [selected]="this.persona().provincia==='Santa Elena'" value="Santa Elena">Santa Elena</option>
+                            <option [selected]="this.persona().provincia==='Santo Domingo de los Tsáchilas'" value="Santo Domingo de los Tsáchilas">Santo Domingo de los Tsáchilas</option>
+                            <option [selected]="this.persona().provincia==='Sucumbíos'" value="Sucumbíos">Sucumbíos</option>
+                            <option [selected]="this.persona().provincia==='Tungurahua'" value="Tungurahua">Tungurahua</option>
+                            <option [selected]="this.persona().provincia==='Zamora Chinchipe'" value="Zamora Chinchipe">Zamora Chinchipe</option>
+                        </select>
+                        @if (form1.get('provincia')?.touched && form1.get('provincia')?.invalid) {
+                            @if (form1.get('provincia')?.errors?.['required']) {
+                                <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="d-flex gap-3 flex-column flex-md-row">
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento <span
+                                class="text-danger">*</span></label>
+                        <input required type="date" class="form-control" id="fecha_nacimiento"
+                            aria-describedby="emailHelp"
+                            formControlName="fecha_nacimiento" [value]="this.persona().fecha_nacimiento">
+                        @if (form1.get('fecha_nacimiento')?.touched && form1.get('fecha_nacimiento')?.invalid) {
+                            @if (form1.get('fecha_nacimiento')?.errors?.['required']) {
+                                <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                            }
+                        }
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="email" class="form-label">Email: (Válida) <span class="text-danger">*</span></label>
+                        <input required type="email" class="form-control" id="email"
+                        formControlName="email" [value]="this.persona().email">
+                        @if (form1.get('email')?.touched && form1.get('email')?.invalid) {
+                            @if (form1.get('email')?.errors?.['required']) {
+                                <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                            }
+                            @if (form1.get('email')?.errors?.['email']) {
+                                <div id="" class="form-text" style="color: red;">Debe ser un correo válido</div>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="d-flex gap-3 flex-column flex-md-row">
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="telefono" class="form-label">Telefono <span class="text-danger">*</span></label>
+                        <input required type="text" class="form-control" id="telefono" aria-describedby="emailHelp"
+                        formControlName="telefono" [value]="this.persona().telefono">
+                        @if (form1.get('telefono')?.touched && form1.get('telefono')?.invalid) {
+                            @if (form1.get('telefono')?.errors?.['required']) {
+                                <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                            }
+                            @if (form1.get('telefono')?.errors?.['pattern']) {
+                                <div id="" class="form-text" style="color: red;">Debe ser un número de teléfono válido (09XXXXXXXX)</div>
+                            }
+                        }
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="direccion" class="form-label">Dirección <span class="text-danger">*</span></label>
+                        <input required type="text" class="form-control" id="direccion"formControlName="direccion"
+                        [value]="this.persona().direccion">
+                        @if (form1.get('direccion')?.touched && form1.get('direccion')?.invalid) {
+                            @if (form1.get('direccion')?.errors?.['required']) {
+                                <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="d-flex gap-3 flex-column flex-md-row">
+                    <div class="mb-3 col-12 col-md-4">
+                        <label for="eleccion" class="form-label">Con discapacidad <span
+                                class="text-danger">*</span></label>
+                        <div>
+                            <label for="discapacidad1" class="ms-1 me-3">
+                                <input type="radio" class="" id="discapacidad1" name="discapacidad" value="Si" formControlName="discapacidad"
+                                [checked]="this.persona().discapacidad==='Si'">
+                                Sí
+                            </label>
+
+                            <label for="discapacidad2" class="ms-1">
+                                <input type="radio" class="" id="discapacidad2" checked name="discapacidad" value="No" formControlName="discapacidad"
+                                [checked]="this.persona().discapacidad==='No'">
+                                No
+                            </label>
+                        </div>
+                        @if (form1.get('discapacidad')?.touched && form1.get('discapacidad')?.invalid) {
+                            @if (form1.get('discapacidad')?.errors?.['required']) {
+                                <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                            }
+                        }
+                    </div>
+                    <div class="mb-3 col-12 col-md-4">
+                        <label for="email" class="form-label">Estado Civil <span class="text-danger">*</span></label>
+                        
+                        <select name="" id="opciones_ec" class="form-control" formControlName="estado_civil">
+                            <option [selected]="this.persona().estado_civil==='Soltero/a'" value="Soltero/a">Soltero/a</option>
+                            <option [selected]="this.persona().estado_civil==='Casado/a'" value="Casado/a">Casado/a</option>
+                            <option [selected]="this.persona().estado_civil==='Divorciado/a'" value="Divorciado/a">Divorciado/a</option>
+                            <option [selected]="this.persona().estado_civil==='Viudo/a'" value="Viudo/a">Viudo/a</option>
+                            <option [selected]="this.persona().estado_civil==='Separado/a legalmente'" value="Separado/a legalmente">Separado/a legalmente</option>
+                            <option [selected]="this.persona().estado_civil==='Unión de hecho/Unión civil'" value="Unión de hecho/Unión civil">Unión de hecho/Unión civil</option>
+                        </select>
+                        @if (form1.get('estado_civil')?.touched && form1.get('estado_civil')?.invalid) {
+                            @if (form1.get('estado_civil')?.errors?.['required']) {
+                                <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                            }
+                        }
+                    </div>
+                    <div class="mb-3 col-12 col-md-4">
+                        <label for="email" class="form-label">Tipo de Sangre <span class="text-danger">*</span></label>
+                        <select name="" id="opciones_ts" class="form-control" formControlName="tipo_sangre"
+                        >
+                            <option [selected]="this.persona().tipo_sangre==='A+'" value="A+">A+</option>
+                            <option [selected]="this.persona().tipo_sangre==='A-'" value="A-">A-</option>
+                            <option [selected]="this.persona().tipo_sangre==='B+'" value="B+">B+</option>
+                            <option [selected]="this.persona().tipo_sangre==='B-'" value="B-">B-</option>
+                            <option [selected]="this.persona().tipo_sangre==='AB+'" value="AB+">AB+</option>
+                            <option [selected]="this.persona().tipo_sangre==='AB-'" value="AB-">AB-</option>
+                            <option [selected]="this.persona().tipo_sangre==='O+'" value="O+">O+</option>
+                            <option [selected]="this.persona().tipo_sangre==='O-'" value="O-">O-</option>                            
+                        </select>     
+                        @if (form1.get('tipo_sangre')?.touched && form1.get('tipo_sangre')?.invalid) {
+                            @if (form1.get('tipo_sangre')?.errors?.['required']) {
+                                <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                            }
+                        }               
+                    </div>
+                </div>
+
+                <div class="d-flex gap-3 flex-column flex-md-row">
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="observaciones" class="form-label">Observaciones</label>
+                        <textarea name="observaciones" class="form-control" id="observaciones" formControlName="observaciones_personal"
+                        [value]="this.persona().observaciones_personal"
+                        ></textarea>
+                    </div>
+                    <div class="mb-3 col-12 col-md-6 d-flex align-items-center gap-3">
+                        <div>
+                            <p>Fotografía:</p>
+                            <div class="mt-3 rounded-circle">
+                                @if (this.previewUrl()) {
+                                    <img [src]="this.previewUrl()" class="rounded-circle" width="100px">
+                                } @else {
+                                    @if(this.persona().url_imagen === ""){
+                                        <img src="../../../assets/imgs/user.png" class="rounded-circle" width="100px">
+                                    }@else {
+                                        <img [src]="url_base + this.persona().url_imagen" class="rounded-circle" width="100px">
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div>
+                            <input required type="file" #fileInput (change)="onFileSelected($event)" accept="image/*"
+                                hidden>
+                            <button type="button" class="btn btn-secondary" (click)="fileInput.click()">
+                                Seleccionar imagen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            } @else {
+            <form class="datos-laborales" [formGroup]="form2">
+                <div class="d-flex gap-3 flex-column flex-md-row">
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="fecha_ingreso" class="form-label">Fecha de Ingreso <span
+                                class="text-danger">*</span></label>
+                        <input required type="date" class="form-control" id="fecha_ingreso"
+                            formControlName="fecha_ingreso" [value]="this.persona().fecha_ingreso">
+                            @if (form2.get('fecha_ingreso')?.touched && form2.get('fecha_ingreso')?.invalid) {
+                                @if (form2.get('fecha_ingreso')?.errors?.['required']) {
+                                    <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                                }
+                            }
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="cargo" class="form-label">Cargo <span class="text-danger">*</span></label>
+                        <input required type="text" class="form-control" id="cargo"
+                        formControlName="cargo" [value]="this.persona().cargo">
+                            @if (form2.get('cargo')?.touched && form2.get('cargo')?.invalid) {
+                                @if (form2.get('cargo')?.errors?.['required']) {
+                                    <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                                }
+                            }
+                    </div>
+                </div>
+                <div class="d-flex gap-3 flex-column flex-md-row">
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="departamento" class="form-label">Departamento <span
+                                class="text-danger">*</span></label>
+                        <input required type="text" class="form-control" id="departamento"
+                        formControlName="departamento" [value]="this.persona().departamento">
+                            @if (form2.get('departamento')?.touched && form2.get('departamento')?.invalid) {
+                                @if (form2.get('departamento')?.errors?.['required']) {
+                                    <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                                }
+                            }
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="provincia" class="form-label">Provincia <span class="text-danger">*</span></label>
+                        <select required type="text" class="form-control" id="provincia"
+                        formControlName="provincia_trabajo">
+                            <option [selected]="this.persona().provincia_trabajo==='Azuay'" value="Azuay">Azuay</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Bolívar'" value="Bolívar">Bolívar</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Cañar'" value="Cañar">Cañar</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Carchi'" value="Carchi">Carchi</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Cotopaxi'" value="Cotopaxi">Cotopaxi</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Chimborazo'" value="Chimborazo">Chimborazo</option>
+                            <option [selected]="this.persona().provincia_trabajo==='El Oro'" value="El Oro">El Oro</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Esmeraldas'" value="Esmeraldas">Esmeraldas</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Galápagos'" value="Galápagos">Galápagos</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Guayas'" value="Guayas">Guayas</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Imbabura'" value="Imbabura">Imbabura</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Loja'" value="Loja">Loja</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Los Ríos'" value="Los Ríos">Los Ríos</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Manabí'" value="Manabí">Manabí</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Morona Santiago'" value="Morona Santiago">Morona Santiago</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Napo'" value="Napo">Napo</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Orellana'" value="Orellana">Orellana</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Pastaza'" value="Pastaza">Pastaza</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Pichincha'" value="Pichincha">Pichincha</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Santa Elena'" value="Santa Elena">Santa Elena</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Santo Domingo de los Tsáchilas'" value="Santo Domingo de los Tsáchilas">Santo Domingo de los Tsáchilas</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Sucumbíos'" value="Sucumbíos">Sucumbíos</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Tungurahua'" value="Tungurahua">Tungurahua</option>
+                            <option [selected]="this.persona().provincia_trabajo==='Zamora Chinchipe'" value="Zamora Chinchipe">Zamora Chinchipe</option>
+                        </select>
+                            @if (form2.get('provincia_trabajo')?.touched && form2.get('provincia_trabajo')?.invalid) {
+                                @if (form2.get('provincia_trabajo')?.errors?.['required']) {
+                                    <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                                }
+                            }
+                    </div>
+                </div>
+                <div class="d-flex gap-3 flex-column flex-md-row">
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="sueldo" class="form-label">Sueldo <span class="text-danger">*</span></label>
+                        <div class="w-100 d-flex">
+                            <input required type="number" class="form-control w-75" id="sueldo"
+                                aria-describedby="emailHelp" placeholder="530.00"
+                                formControlName="sueldo" [value]="this.persona().sueldo">
+                            <p class="w-25 mb-0 ms-2 fs-4">USD</p>
+                        </div>
+                            @if (form2.get('sueldo')?.touched && form2.get('sueldo')?.invalid) {
+                                @if (form2.get('sueldo')?.errors?.['required']) {
+                                    <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                                }
+                                @if (form2.get('sueldo')?.errors?.['min']) {
+                                    <div id="" class="form-text" style="color: red;">Debe ser un valor mayor a 1</div>
+                                }
+                            }
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="eleccion" class="form-label">Jornada Parcial <span
+                                class="text-danger">*</span></label>
+                        <div>
+                            <label for="jornada1" class="ms-1 me-3">
+                                <input type="radio" class="" id="jornada1" name="jornada" value="Sí" formControlName="jornada" 
+                                [checked]="this.persona().jornada==='Si'">
+                                Sí
+                            </label>
+
+                            <label for="jornada2" class="ms-1">
+                                <input type="radio" class="" id="jornada2" name="jornada" value="No" formControlName="jornada"
+                                [checked]="this.persona().jornada==='No'">
+                                No
+                            </label>
+                        </div>
+                        @if (form2.get('jornada')?.touched && form2.get('jornada')?.invalid) {
+                                @if (form2.get('jornada')?.errors?.['required']) {
+                                    <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                                }
+                            }
+                    </div>
+                </div>
+                <div class="d-flex gap-3 flex-column flex-md-row">
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="categoria" class="form-label">Categoria <span
+                                class="text-danger">*</span></label>
+                        <input required type="text" class="form-control" id="categoria" formControlName="categoria"
+                        [value]="this.persona().categoria">
+                        @if (form2.get('categoria')?.touched && form2.get('categoria')?.invalid) {
+                                @if (form2.get('categoria')?.errors?.['required']) {
+                                    <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                                }
+                            }
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="seccion" class="form-label">Sección <span class="text-danger">*</span></label>
+                        <input required type="text" class="form-control" id="seccion" formControlName="seccion"
+                        [value]="this.persona().seccion">
+                        @if (form2.get('seccion')?.touched && form2.get('seccion')?.invalid) {
+                                @if (form2.get('seccion')?.errors?.['required']) {
+                                    <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                                }
+                            }
+                    </div>
+                </div>
+                <div class="d-flex gap-3 flex-column flex-md-row">
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="status" class="form-label">Estado <span
+                                class="text-danger">*</span></label>
+                        <select required type="text" class="form-control" id="status" formControlName="status">
+                            <option [selected]="this.persona().status==='Activo'" value="Activo">Activo</option>
+                            <option [selected]="this.persona().status==='Inactivo'" value="Inactivo">Inactivo</option>
+                        </select>
+                        @if (form2.get('status')?.touched && form2.get('status')?.invalid) {
+                                @if (form2.get('status')?.errors?.['required']) {
+                                    <div id="" class="form-text" style="color: red;">Este es un campo obligatorio</div>
+                                }
+                            }
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="seccion" class="form-label">Código</label>
+                        <input disabled type="text" class="form-control" id="seccion"
+                        [value]="this.persona().codigo">
+                    </div>
+                </div>
+                <div class="d-flex gap-3 flex-column flex-md-row">
+                    <div class="mb-3 w-100">
+                        <label for="observaciones" class="form-label">Observaciones</label>
+                        <textarea name="observaciones" class="form-control" id="observaciones"
+                            placeholder="Comentario u observación referente a LA FICHA LABORAL"
+                            formControlName="observaciones_laboral" [value]="this.persona().observaciones_laboral"></textarea>
+                    </div>
+                </div>
+            </form>
+            }
+        </div>
+
+    </div>
+
+    <div>
+        <div class="d-flex flex-row gap-3">
+            @if(this.step === 1){
+                <button class="btn btn-success ps-4 pe-4" 
+                                (click)="siguientePaso()"
+                                [style]="form1.invalid ? 'opacity: 0.5' : ''"
+                                [disabled]="form1.invalid"
+                                >Siguiente</button>
+            }@else {
+                <button class="btn btn-success ps-4 pe-4" 
+                                (click)="guardar()"
+                                [style]="form2.invalid ? 'opacity: 0.5' : ''"
+                                [disabled]="form2.invalid"
+                                >Guardar</button>
+            }
+            <app-btn-reporte></app-btn-reporte>
+            <app-btn-salir></app-btn-salir>
+        </div>
+    </div>
+</div>

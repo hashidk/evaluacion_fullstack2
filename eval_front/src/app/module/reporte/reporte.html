@@ -1,0 +1,148 @@
+<table class="table table-bordered mt-2">
+  <!-- <thead>
+    <tr>
+      <th scope="col" style="cursor: pointer;">#</th>
+      <th scope="col" style="cursor: pointer;">First</th>
+      <th scope="col" style="cursor: pointer;">Last</th>
+      <th scope="col" style="cursor: pointer;">Handle</th>
+    </tr>
+  </thead> -->
+  <tbody>
+    <tr>
+      <th scope="row">Producto Paraiso del Ecuador S.A.</th>
+      <td>Dec: 31/Dec/1969</td>
+      <td>Al: 27/May/2019</td>
+      <td>{{formattedDate}}</td>
+      <td>dego</td>
+      <td>rp41</td>
+    </tr>
+    <tr>
+      <th scope="row" colspan="6">PATENTE Provedatos del Ecuador S.A.</th>
+    </tr>
+  </tbody>
+</table>
+
+<p>CATALOGO de EMPLEADOS:</p>
+
+<div style="overflow-x: scroll;">
+  <table class="table table-hover">
+    <thead class="thead-light">
+      <tr class="table-primary" style="background-color: rgb(102, 152, 201);">
+      <th scope="col" style="cursor: pointer;" (click)="ordenarStringsPor(enum.NOMBRES)">NOMBRE 
+        @if(this.ordenarPor() === enum.NOMBRES){
+          @if(this.sentido() === orden.ASC){<img src="../../../assets/imgs/flecha.png" alt="" width="10" >}
+          @else {<img src="../../../assets/imgs/flecha.png" alt="" width="10" style="rotate: 180deg;">}}
+      </th>
+      <th scope="col" style="cursor: pointer;" (click)="ordenarStringsPor(enum.RUC_CEDULA)">RUC/CEDULA 
+       @if(this.ordenarPor() === enum.RUC_CEDULA){
+          @if(this.sentido() === orden.ASC){<img src="../../../assets/imgs/flecha.png" alt="" width="10" >}
+          @else {<img src="../../../assets/imgs/flecha.png" alt="" width="10" style="rotate: 180deg;">}} 
+      </th>
+      <th scope="col" style="cursor: pointer;" (click)="ordenarStringsPor(enum.CODIGO)">CODIGO 
+       @if(this.ordenarPor() === enum.CODIGO){
+          @if(this.sentido() === orden.ASC){<img src="../../../assets/imgs/flecha.png" alt="" width="10" >}
+          @else {<img src="../../../assets/imgs/flecha.png" alt="" width="10" style="rotate: 180deg;">}} 
+      </th>
+      <th scope="col" style="cursor: pointer;" (click)="ordenarStringsPor(enum.DIRECCION)">DIRECCION 
+       @if(this.ordenarPor() === enum.DIRECCION){
+          @if(this.sentido() === orden.ASC){<img src="../../../assets/imgs/flecha.png" alt="" width="10" >}
+          @else {<img src="../../../assets/imgs/flecha.png" alt="" width="10" style="rotate: 180deg;">}} 
+      </th>
+      <th scope="col" style="cursor: pointer;" (click)="ordenarStringsPor(enum.TELEFONO)">TELEFONO 
+       @if(this.ordenarPor() === enum.TELEFONO){
+          @if(this.sentido() === orden.ASC){<img src="../../../assets/imgs/flecha.png" alt="" width="10" >}
+          @else {<img src="../../../assets/imgs/flecha.png" alt="" width="10" style="rotate: 180deg;">}} 
+      </th>
+      <th scope="col" style="cursor: pointer;" (click)="ordenarStringsPor(enum.DEPARTAMENTO)">DEPARTAMENTO 
+       @if(this.ordenarPor() === enum.DEPARTAMENTO){
+          @if(this.sentido() === orden.ASC){<img src="../../../assets/imgs/flecha.png" alt="" width="10" >}
+          @else {<img src="../../../assets/imgs/flecha.png" alt="" width="10" style="rotate: 180deg;">}} 
+      </th>
+      <th scope="col" style="cursor: pointer;" (click)="ordenarStringsPor(enum.SECCION)">SECCION 
+       @if(this.ordenarPor() === enum.SECCION){
+          @if(this.sentido() === orden.ASC){<img src="../../../assets/imgs/flecha.png" alt="" width="10" >}
+          @else {<img src="../../../assets/imgs/flecha.png" alt="" width="10" style="rotate: 180deg;">}} 
+      </th>
+      <th scope="col" style="cursor: pointer;" (click)="ordenarStringsPor(enum.CARGO)">CARGO 
+       @if(this.ordenarPor() === enum.CARGO){
+          @if(this.sentido() === orden.ASC){<img src="../../../assets/imgs/flecha.png" alt="" width="10" >}
+          @else {<img src="../../../assets/imgs/flecha.png" alt="" width="10" style="rotate: 180deg;">}} 
+      </th>
+      <th scope="col" style="cursor: pointer;" (click)="ordenarStringsPor(enum.FECHA_INGRESO)">FEC. ING. 
+       @if(this.ordenarPor() === enum.FECHA_INGRESO){
+          @if(this.sentido() === orden.ASC){<img src="../../../assets/imgs/flecha.png" alt="" width="10" >}
+          @else {<img src="../../../assets/imgs/flecha.png" alt="" width="10" style="rotate: 180deg;">}} 
+      </th>
+      <th scope="col" style="cursor: pointer;" (click)="ordenarStringsPor(enum.STATUS)">STATUS 
+       @if(this.ordenarPor() === enum.STATUS){
+          @if(this.sentido() === orden.ASC){<img src="../../../assets/imgs/flecha.png" alt="" width="10" >}
+          @else {<img src="../../../assets/imgs/flecha.png" alt="" width="10" style="rotate: 180deg;">}} 
+      </th>
+      <th scope="col" style="cursor: pointer;" (click)="ordenarStringsPor(enum.SUELDO)">SUELDO 
+       @if(this.ordenarPor() === enum.SUELDO){
+          @if(this.sentido() === orden.ASC){<img src="../../../assets/imgs/flecha.png" alt="" width="10" >}
+          @else {<img src="../../../assets/imgs/flecha.png" alt="" width="10" style="rotate: 180deg;">}} 
+      </th>
+      <th scope="col" style="cursor: pointer;" (click)="ordenarStringsPor(enum.DISCAPACIDAD)">CON DISCAPACIDAD 
+       @if(this.ordenarPor() === enum.DISCAPACIDAD){
+          @if(this.sentido() === orden.ASC){<img src="../../../assets/imgs/flecha.png" alt="" width="10" >}
+          @else {<img src="../../../assets/imgs/flecha.png" alt="" width="10" style="rotate: 180deg;">}} 
+      </th>
+      <th scope="col" style="cursor: pointer;" (click)="ordenarStringsPor(enum.EMAIL)">EMAIL 
+       @if(this.ordenarPor() === enum.EMAIL){
+          @if(this.sentido() === orden.ASC){<img src="../../../assets/imgs/flecha.png" alt="" width="10" >}
+          @else {<img src="../../../assets/imgs/flecha.png" alt="" width="10" style="rotate: 180deg;">}} 
+      </th>
+      <th scope="col" style="cursor: pointer;" (click)="ordenarStringsPor(enum.CATEGORIA)">CATEGORIA 
+       @if(this.ordenarPor() === enum.CATEGORIA){
+          @if(this.sentido() === orden.ASC){<img src="../../../assets/imgs/flecha.png" alt="" width="10" >}
+          @else {<img src="../../../assets/imgs/flecha.png" alt="" width="10" style="rotate: 180deg;">}} 
+      </th>
+      <th scope="col" style="cursor: pointer;" (click)="ordenarStringsPor(enum.ESTADO_CIVIL)">ESTADO CIVIL 
+       @if(this.ordenarPor() === enum.ESTADO_CIVIL){
+          @if(this.sentido() === orden.ASC){<img src="../../../assets/imgs/flecha.png" alt="" width="10" >}
+          @else {<img src="../../../assets/imgs/flecha.png" alt="" width="10" style="rotate: 180deg;">}} 
+      </th>
+      <th scope="col" style="cursor: pointer;" (click)="ordenarStringsPor(enum.TIPO_SANGRE)">TIPO SANGRE 
+       @if(this.ordenarPor() === enum.TIPO_SANGRE){
+          @if(this.sentido() === orden.ASC){<img src="../../../assets/imgs/flecha.png" alt="" width="10" >}
+          @else {<img src="../../../assets/imgs/flecha.png" alt="" width="10" style="rotate: 180deg;">}} 
+      </th>
+      <th scope="col" style="cursor: pointer;" (click)="ordenarStringsPor(enum.PROVINCIA_TRABAJO)">PROVINCIA 
+       @if(this.ordenarPor() === enum.PROVINCIA_TRABAJO){
+          @if(this.sentido() === orden.ASC){<img src="../../../assets/imgs/flecha.png" alt="" width="10" >}
+          @else {<img src="../../../assets/imgs/flecha.png" alt="" width="10" style="rotate: 180deg;">}} 
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of personas(); track item.id) {
+        <tr style="background-color: rgb(250, 251, 255);" (click)="actualizar(item.id)">
+          <th scope="row">{{item.nombres}} {{item.apellidos}}</th>
+          <td>{{item.ruc_cedula}}</td>
+          <td>{{item.codigo}}</td>
+          <td>{{item.direccion}}</td>
+          <td>{{item.telefono}}</td>
+          <td>{{item.departamento}}</td>
+          <td>{{item.seccion}}</td>
+          <td>{{item.cargo}}</td>
+          <td>{{item.fecha_ingreso | date:'shortDate' }}</td>
+          <td>{{item.status}}</td>
+          <td>{{item.sueldo}}</td>
+          <td>{{item.discapacidad}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.categoria}}</td>
+          <td>{{item.estado_civil}}</td>
+          <td>{{item.tipo_sangre}}</td>
+          <td>{{item.provincia}}</td>
+        </tr>
+    }
+  </tbody>
+</table>
+</div>
+
+<div>
+    <div class="d-flex flex-row gap-3 align-items-center justify-content-center">
+        <app-btn-salir></app-btn-salir>
+    </div>
+</div>

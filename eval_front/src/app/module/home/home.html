@@ -1,0 +1,51 @@
+<div class="d-flex align-items-center justify-content-center flex-column">
+
+  <div class="w-75 d-flex align-items-center flex-column">
+    <div class="d-flex flex-column gap-3 w-75 flex-md-row" style="background-color: #fafbff;">
+      <div class="d-flex flex-row flex-md-column">
+        <label class="text-danger" for="nombre">Nombre</label>
+        <input class="form-control shadow" style="background-color: #cbe6fb" type="text" (change)="onInputChange1($event)">
+      </div>
+      <div class="d-flex flex-row flex-md-column">
+        <label class="text-danger" for="nombre">Código Empleado</label>
+        <input class="form-control shadow" style="background-color: #cbe6fb" type="text" (change)="onInputChange2($event)">
+      </div>
+      <div class="d-flex align-items-end">
+        <button (click)="buscar()" class="btn btn-outline-info text-white rounded-pill h-50" style="background: #FFFFFF;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(123, 176, 181, 1) 50%); border: none; width: 8rem;">Buscar</button>
+      </div>
+    </div>
+    
+    
+    <table class="table table-bordered table-striped table-hover mt-5">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Codigo</th>
+          <th scope="col">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of personas()
+        .filter(value => value.nombres.toLowerCase().startsWith(this.filtro1().toLowerCase()))
+        .filter(value => value.codigo.toLowerCase().startsWith(this.filtro2().toLowerCase()))
+        .slice(0,19); track item.id) {
+        <tr (click)="actualizar(item.id)" style="cursor: pointer;">
+          <th scope="row">{{item.nombres}} {{item.apellidos}}</th>
+          <td>{{item.codigo}}</td>
+          <td>{{item.status}}</td>
+        </tr>
+        }
+        <tr>
+          <th scope="row" colspan="3">Únicamente se estan desplegando los primeros 20 registros. si no encuentra la información deseada por favor utilice los filtros de la parte superior.</th>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div class="d-flex flex-row gap-3">
+        <app-btn-crear></app-btn-crear>
+        <app-btn-reporte></app-btn-reporte>
+        <app-btn-salir></app-btn-salir>
+    </div>
+</div>
+</div>
