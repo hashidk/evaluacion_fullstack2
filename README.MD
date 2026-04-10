@@ -208,19 +208,23 @@ GET    /api/personas/upload?file=img.png  -> obtener imagen
 
 ## Página principal
 
-![Home](docs/screenshots/home.png)
+![Home](capturas/img1.png)
+![Home](capturas/img2.png)
 
-## Listado
+## Reporte
 
-![Listado](docs/screenshots/list.png)
+![Listado](capturas/img5.png)
+![Listado](capturas/img6.png)
 
 ## Crear nuevo
 
-![Formulario](docs/screenshots/form.png)
+![Nuevo](capturas/img3.png)
+![Nuevo](capturas/img4.png)
 
 ## Actualizar
 
-![Formulario](docs/screenshots/form.png)
+![Actualizar](capturas/img7.png)
+![Actualizar](capturas/img8.png)
 
 ---
 
@@ -253,9 +257,9 @@ Desarrollado por: **Willian Medina**, el 9 de abril de 2026.
 
 # Contacto
 
-Linkedin: https://www.linkedin.com/in/willian-m-3539ab19a/
-Correo: andres_mv1@hotmail.es
-Teléfono: +593 99 5079 657
+###### Linkedin: https://www.linkedin.com/in/willian-m-3539ab19a/
+###### Correo: andres_mv1@hotmail.es
+###### Teléfono: +593 99 5079 657
 
 ```
 ```
